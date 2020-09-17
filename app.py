@@ -12,4 +12,5 @@ def load_data(nrows):
     data = pd.read_csv(DATA_URL, nrows=nrows, parse_dates=[['CRASH_DATE','CRASH_TIME']])
     # Since we are gonna use map we can not have na values for latitude and longitude
     data.dropna(subset=['LATITUDE','LONGITUDE'], inplace=True)
-    
+    lowercase = lambda x: str(x).lower()
+    data.rename(lowercase, axis='columns', inplace=True)
