@@ -8,7 +8,7 @@ st.title("Motor Vehichle collisions in New York City")
 st.markdown("This application is a streamlit dashboard that can be "
 "used to analyze motor vehichle collisions in NYC💥🚗")
 
-@st.cache(persist=True)
+@st.cache(persist=True) # The data will not be re-loaded on each run
 def load_data(nrows):
     data = pd.read_csv(DATA_URL, nrows=nrows, parse_dates=[['CRASH_DATE','CRASH_TIME']])
     # Since we are gonna use map we can not have na values for latitude and longitude
@@ -19,4 +19,6 @@ def load_data(nrows):
     return data
     
 data = load_data(100)
-st.write(data)
+if st.checkbox("Show Raw Data:", False):
+    st.subheader("Raw Data")
+    st.write(data)
