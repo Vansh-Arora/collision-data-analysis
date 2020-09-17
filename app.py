@@ -18,7 +18,18 @@ def load_data(nrows):
     data.rename(columns={'crash_date_crash_time':'date/time'}, inplace=True)
     return data
     
-data = load_data(100)
+data = load_data(10000)
+
+st.header("Where are the most people injured in NYC?")
+injured_people = st.slider("Number of people injured in Vehichle Collisions:", 0, 19)
+st.map(data.query("injured_persons >= @injured_people")[["latitude", "longitude"]].dropna(how="any"))
+
+
+
+
+
+
+
 if st.checkbox("Show Raw Data:", False):
     st.subheader("Raw Data")
     st.write(data)
