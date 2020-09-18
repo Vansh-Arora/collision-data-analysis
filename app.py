@@ -4,14 +4,14 @@ import numpy as np
 
 DATA_URL = ( "F:\\Data\\Motor_Vehicle_Collisions_-_Crashes.csv")
 
-st.title("Motor Vehichle collisions in New York City")
+st.title("Motor Vehicle collisions in New York City")
 st.markdown("This application is a streamlit dashboard that can be "
-"used to analyze motor vehichle collisions in NYC💥🚗")
+"used to analyze motor vehicle collisions in NYC💥🚗")
 
 @st.cache(persist=True) # The data will not be re-loaded on each run
 def load_data(nrows):
     data = pd.read_csv(DATA_URL, nrows=nrows, parse_dates=[['CRASH_DATE','CRASH_TIME']])
-    # Since we are gonna use map we can not have na values for latitude and longitude
+    # Since we are gonna use map we can not have NA values for latitude and longitude
     data.dropna(subset=['LATITUDE','LONGITUDE'], inplace=True)
     lowercase = lambda x: str(x).lower()
     data.rename(lowercase, axis='columns', inplace=True)
@@ -25,8 +25,9 @@ injured_people = st.slider("Number of people injured in Vehichle Collisions:", 0
 st.map(data.query("injured_persons >= @injured_people")[["latitude", "longitude"]].dropna(how="any"))
 
 
-
-
+st.header("How many collisions occur during a given time of day?")
+hour = st.selectbox("Hour to look at:", range(0,24),1)
+data = data[data['date/time'].dt.hour == hour]
 
 
 
