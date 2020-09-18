@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import pydeck as pdk
-import plotly.express as px
+import plotly as px
 
 DATA_URL = ( "F:\\Data\\Motor_Vehicle_Collisions_-_Crashes.csv")
 
@@ -58,8 +58,10 @@ st.write(pdk.Deck(
 
 ))
 
-st.subheader("Breakdown by minute between %i:00 and %i:00" % (hour, hour+1)%24)
-
+st.subheader("Breakdown by minute between %i:00 and %i:00" % (hour, (hour + 1) % 24))
+filtered = data[
+    (data['date/time'].dt.hour >= hour) & (data['date/time'].dt.hour < hour+1) 
+]
 
 
 if st.checkbox("Show Raw Data:", False):
