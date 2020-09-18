@@ -27,7 +27,8 @@ st.map(data.query("injured_persons >= @injured_people")[["latitude", "longitude"
 
 
 st.header("How many collisions occur during a given time of day?")
-hour = st.selectbox("Hour to look at:", range(0,24),1)
+#hour = st.selectbox("Hour to look at:", range(0,24),1)
+hour = st.slider("Hour to look at:")
 data = data[data['date/time'].dt.hour == hour]
 
 st.markdown("Vehicle collisions between %i:00 and %i:00" % (hour, (hour + 1) % 24))
@@ -41,6 +42,7 @@ st.write(pdk.Deck(
         "zoom": 11,
         "pitch": 50,
     },
+
 
 ))
 
