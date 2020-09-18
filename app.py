@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import pydeck as pdk
+import plotly.express as px
 
 DATA_URL = ( "F:\\Data\\Motor_Vehicle_Collisions_-_Crashes.csv")
 
@@ -56,6 +57,9 @@ st.write(pdk.Deck(
     ],
 
 ))
+
+st.subheader("Breakdown by minute between %i:00 and %i:00" % (hour, hour+1)%24)
+
 
 
 if st.checkbox("Show Raw Data:", False):
