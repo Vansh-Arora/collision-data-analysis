@@ -4,7 +4,7 @@ import numpy as np
 import pydeck as pdk
 import plotly.express as px
 
-DATA_URL = ("https://drive.google.com/file/d/1T7XoDlcbOR90spCktCkR-adxsFBTLShJ/view?usp=sharing")
+DATA_URL = ("Motor_Vehicle_Collisions_-_Crashes.csv")
 
 st.title("Motor Vehicle collisions in New York City")
 st.markdown("This application is a streamlit dashboard that can be "
